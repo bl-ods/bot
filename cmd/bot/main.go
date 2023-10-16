@@ -2,8 +2,10 @@ package main
 
 import (
 	"log"
+	"os"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/joho/godotenv"
 )
 
 var numericKeyboard = tgbotapi.NewReplyKeyboard(
@@ -19,9 +21,13 @@ var numericKeyboard = tgbotapi.NewReplyKeyboard(
 	),
 )
 
-const token = "6464001705:AAGCGyq7c6PB084ZbSQpX6xKMN959mxX7K8"
+//const token = "6464001705:AAGCGyq7c6PB084ZbSQpX6xKMN959mxX7K8"
 
 func main() {
+	godotenv.Load()
+
+	token := os.Getenv("TOKEN")
+	
 	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
